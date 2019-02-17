@@ -23,18 +23,20 @@ public:
     }
 
 };
-test::test(int scale) {
+test::test(int x,int y) {
     htq=new HashTreeQuery();
-    test_num=scale;
+    scale=x;
+    test_times=y;
     if(scale>htq->hashTree->get_capacity()){
         cout<<"[test]: max capacity is "<<htq->hashTree->get_capacity()<<",but input is "<<scale<<endl;
         exit(0);
     }
+    //generate X keys
     for(int i=0;i<scale;i++){
-        test_key.push_back(to_string(re()%scale));
-        htq->put(test_key[test_key.size()-1]);
+        //test_key.push_back(to_string(re()%scale));
+        htq->put(to_string(i));
     }
-    cout<<"[test]: max capacity is "<<htq->hashTree->get_capacity()<<",input finish "<<scale<<endl;
+    cout<<"[test]: max capacity is "<<htq->hashTree->get_capacity()<<",input keys "<<scale<<endl;
 //    htq.put("aaa");
 //    htq.put("aaaa");
 //    htq.put("aaaaa");
@@ -49,14 +51,14 @@ test::test(int scale) {
 void test::start() {
     Timer timer;
     cout<<"generate test sequence\n";
-    for(int i=0;i<test_num;i++){
-        test_seq.push_back(re()%test_num);
-    }
+//    for(int i=0;i<test_num;i++){
+//        test_seq.push_back(re()%test_num);
+//    }
     timer.start();
-    for(int i=0;i<test_num;i++){
+    for(int i=0;i<test_times;i++){
         HashMem a;
-        htq->get(test_key[test_seq[i]],&a);
+        htq->get(to_string(re()%scale),&a);
     }
     timer.stop();
-    cout<<"[test]:"<< test_num<<" tables ,use "<< timer.time_usage()<<"s"<<endl;
+    cout<<"[test]:"<< scale <<" tables for "<< test_times<<" times,use "<< timer.time_usage()<<" s"<<endl;
 }

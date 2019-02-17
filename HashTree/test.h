@@ -11,10 +11,11 @@ class test {
     std::default_random_engine re;
     HashTreeQuery* htq= nullptr;
 public:
-    int test_num;
-    std::vector<std::string> test_key;
+    int scale=0;
+    int test_times;
+    //std::vector<std::string> test_key;
     std::vector<int> test_seq;
-    test(int scale);
+    test(int scale,int test_times);
     void start();
 
 };

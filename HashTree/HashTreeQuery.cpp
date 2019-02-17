@@ -55,7 +55,7 @@ void putwalk(HashNode* now,size_t hash_value,std::string tablename){
 //    if(){
 //
 //    }
-    std::cout<< now->get_level()<< ":"<<now->occupied<<std::endl;
+    //std::cout<< now->get_level()<< ":"<<now->occupied<<std::endl;
     if(now->data.compare(tablename)==0){
         return;
     }
@@ -70,7 +70,7 @@ void putwalk(HashNode* now,size_t hash_value,std::string tablename){
         }else{
             now->data=tablename;
             now->occupied=true;
-            std::cout<<"[HashQuery]:put ok "<<tablename<<std::endl;
+            //std::cout<<"[HashQuery]:put ok "<<tablename<<std::endl;
             //now->add_user()
         }
     }
@@ -80,7 +80,7 @@ HashtreeState HashTreeQuery::put(std::string tablename) {
     std::hash<std::string> hash_string;
     auto hash_value=hash_string(tablename);
     int path=hash_value%2;
-    std::cout<<"path:"<< path<< ":"<<hashTree->get_root()->sons.size()<<std::endl;
+    //std::cout<<"path:"<< path<< ":"<<hashTree->get_root()->sons.size()<<std::endl;
     putwalk((HashNode*)(hashTree->get_root()->sons[path]),hash_value,tablename);
     return HashtreeState ::SUCCESS;
 }

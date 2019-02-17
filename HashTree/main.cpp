@@ -59,7 +59,8 @@ int main() {
 
     //test_HashFile();
     std::cout << "Hello, World!" << std::endl;
-    test t(100000);
+#define T_T 100000
+    test t(10000,T_T);
     t.start();
     //test_HashTreeQuery1();
     return 0;
