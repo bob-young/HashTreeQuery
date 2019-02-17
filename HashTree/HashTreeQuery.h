@@ -9,10 +9,21 @@
 
 class HashTreeQuery {
 private:
-    Hashtree hashTree;
 
+    std::string file_path=std::string("default.txt");
+    std::string owner;
+    std::vector<std::string > current_users;
 public:
-    
+    Hashtree* hashTree;
+    HashTreeQuery(const char* fp);//use an existed one
+    HashTreeQuery();//create a new one
+    HashtreeState get(std::string tablename,HashMem* key);//get key
+    HashtreeState put(std::string tablename);//add a key
+    HashtreeState add_user(std::string tablename,std::string username); //share
+    HashtreeState remove_user(std::string tablename,std::string username);//remove
+    HashtreeState reset(std::string tablename);
+    HashtreeState flush();
+    ~HashTreeQuery();
 };
 
 

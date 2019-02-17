@@ -7,6 +7,8 @@
 
 #define DEBUG
 
+#define FIX_DEPTH 9
+
 #define ARCH 64
 
 #define KEYSIZE 8

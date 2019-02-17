@@ -5,14 +5,17 @@
 #include "Hashtree.h"
 
 void Hashtree::build(HashNode* now ,int target){
+    //std::cout<<"cap:"<<now->get_capacity()<<std::endl;
+    node_count++;
     if(now->get_level()==target){
         leaves.push_back(now);
         return;
     }else{
-        //std::cout<<"++"<<now->get_capacity()<<std::endl;
-        for(int i=0;i<now->get_capacity();i++){
+        //std::cout<<"[HashTree]:"<<now->get_level()<<std::endl;
+        for(int i=0;i<prime[now->get_level()];i++){
             //std::cout<<"__"<<now->get_level()<<std::endl;
             HashNode* tmp=new HashNode(now->get_level()+1,"");
+            //std::cout<<"[HashTree]:"<<tmp<<std::endl;
             now->add_son(tmp);
             build(tmp,target);
         }
@@ -27,6 +30,7 @@ Hashtree::Hashtree(int depth):Hashtree(){
     this->depth=depth;
     leaves.clear();
     leaves.reserve(Prime::get_cap(depth-1));
+    std::cout<<"building...\n";
     build(&root,depth-1);
     std::cout<<"build hash tree at level "<< depth-1;
     std::cout<<" with capacity of "<<Prime::get_cap_total(depth-1)<<std::endl;

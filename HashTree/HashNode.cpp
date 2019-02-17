@@ -129,9 +129,17 @@ int HashNode::get_level() {
 
 NodeState HashNode::add_son(HashNode *ptr_son) {
     if(sons.size()+1>this->capacity){
+        std::cout<<"[hashnode]:out of cap "<<this->capacity<<std::endl;
+        exit(0);
         return NodeState::OUT_OF_CAP;
     }
+    //std::cout<<ptr_son->level<<" ppp:" <<ptr_son->capacity<<std::endl;
     ptr_son->set_hash(*this,(int)sons.size());
     sons.push_back(ptr_son);
     return NodeState ::SUCCESS;
+}
+
+bool HashNode::add_user(std::string user) {
+    users.push_back(user);
+    return true;
 }

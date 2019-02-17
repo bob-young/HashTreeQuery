@@ -57,7 +57,7 @@ HashtreeState HashtreeFile::File_to_Hashtree(std::string& input_path, Hashtree &
     if(input.bad()){
         return HashtreeState ::FILE_READ_ERR;
     }
-//------------------
+//------------------ read metadata
     char getstr[BUFSIZE];
     char newstr[BUFSIZE];
     input.getline(getstr,BUFSIZE);
@@ -67,10 +67,16 @@ HashtreeState HashtreeFile::File_to_Hashtree(std::string& input_path, Hashtree &
     input.getline(getstr,BUFSIZE);
     sscanf(getstr,"<<%s>>",newstr);
     hashtree.name=std::string(newstr);
+    hashtree.name.pop_back();
+    hashtree.name.pop_back();
 
     memset(getstr,'\0',BUFSIZE);
     input.getline(getstr,BUFSIZE);
     sscanf(getstr,"<<%d>>",&(hashtree.depth));
+
+    std::cout <<hashtree.id <<std::endl;
+    std::cout <<hashtree.name <<std::endl;
+    std::cout <<hashtree.depth <<std::endl;
 
 //---------------------------
 
@@ -97,8 +103,9 @@ HashtreeState HashtreeFile::build_HashtoFile(std::string& output_path,HashNode* 
         Hashnode_to_File(output_path,*now);
         return HashtreeState ::SUCCESS;
     }else{
-        //std::cout<<"++"<<now->get_capacity()<<std::endl;
-        if(now->sons.size()!=now->get_capacity()){
+
+        //std::cout<<"[HashtreeFile]:" <<now->sons.size()<<" ：-： "<<now->level<<std::endl;
+        if(now->sons.size()!=prime[now->level]){
             std::cout<<"incomplete hash tree\n";
             return HashtreeState ::HT_INCOMPLETE;
         }
@@ -118,7 +125,7 @@ HashtreeState HashtreeFile::build_HashtoFile(std::string& output_path,HashNode* 
 
 
 HashtreeState HashtreeFile::Hashnode_to_File(std::string &output_path, HashNode &hashNode) {
-
+    std::cout<<"[HashtreeFile]:" <<hashNode.get_capacity() <<" ：-： "<<hashNode.level<<std::endl;
     std::ofstream output(output_path,std::ios_base::app|std::ios_base::binary);
     if(output.fail()){
         return HashtreeState ::FILE_OPEN_ERR;
@@ -152,7 +159,7 @@ HashtreeState HashtreeFile::File_to_Hashnode(std::ifstream& input, HashNode &has
     if(input.bad()){
         return HashtreeState ::FILE_READ_ERR;
     }
-    //colname
+    //colname or tablename
     //output<<"{"<<hashNode.data<<"}\n";
     char getstr[BUFSIZE];
     char newstr[BUFSIZE];
@@ -162,6 +169,11 @@ HashtreeState HashtreeFile::File_to_Hashnode(std::ifstream& input, HashNode &has
 
     hashNode.data = std::string(newstr);
     hashNode.data.pop_back();
+    if(hashNode.data.size()==0){
+        hashNode.occupied= false;
+    } else{
+        hashNode.occupied= true;
+    }
     //prev hash
     /*
     output<<"{";
@@ -218,7 +230,7 @@ HashtreeState HashtreeFile::build_FiletoHash(std::ifstream& input, HashNode *now
         (*now).showNode();
         return HashtreeState ::SUCCESS;
     }else{
-        //std::cout<<"++"<<now->get_capacity()<<std::endl;
+        std::cout<<"++"<<now->get_capacity()<<std::endl;
         if(now->sons.size()!=now->get_capacity()){
             std::cout<<"incomplete hash tree\n";
             return HashtreeState ::HT_INCOMPLETE;

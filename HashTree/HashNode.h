@@ -25,18 +25,25 @@ class HashNode :public Node<std::string>{
 private:
     int level;
     int max;
-    bool occupied= false;
+
     bool root=false;
     //unsigned char hashcode[KEYBYTE] EMPTY;
-    HashMem hashcode;
-    HashMem prevHashcode;
+
+
     std::vector<std::string> users;
     //T data;//tablename
 
     friend class HashtreeFile;
+
 public:
+
+    HashMem hashcode;
+    HashMem prevHashcode;
+
     HashNode(int level, std::string data):Node<std::string>(Prime::get_prime(level),data){
         this->level=level;
+        this->capacity=prime[level];
+        this->occupied= false;
         memset(&prevHashcode,0,KEYBYTE);
     };
     void setroot();
@@ -51,6 +58,7 @@ public:
     std::vector<std::string> get_gusts();
     std::string get_colname();
     bool reomve_user(std::string user);
+    bool add_user(std::string user);
     bool remove_user(int index);
     int get_level();
 #ifdef DEBUG

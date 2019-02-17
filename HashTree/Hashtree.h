@@ -19,6 +19,7 @@ private:
     friend class HashtreeFile;
     void build(HashNode *now,int target_level);
 public:
+    int node_count=0;
     Hashtree(int depth);
     Hashtree();
     HashtreeState add_level();
@@ -26,6 +27,20 @@ public:
     int get_depth();
     HashNode* get_root();
     std::vector<HashNode*> leaves;
+    void show(HashNode* hn){
+        std::cout<<"[Hashtree]{"<<hn<<std::endl;
+        std::cout<<"\t level:"<<hn->get_level()<<std::endl;
+        std::cout<<"\t cap:"<<hn->get_capacity()<<std::endl;
+        std::cout<<"\t name:"<<hn->data<<std::endl;
+        std::cout<<"\t users:"<<hn->get_users().size()<<std::endl;
+        std::cout<<"\t occu:"<<hn->occupied<<std::endl;
+        std::cout<<"\t sons:"<<hn->sons.size()<<std::endl;
+        std::cout<<"}\n";
+        if(hn->sons.size()>0){
+            for(int i=0;i<hn->sons.size();i++)
+                show((HashNode*)hn->sons[i]);
+        }
+    }
 };
 
 

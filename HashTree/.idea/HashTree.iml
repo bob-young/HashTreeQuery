@@ -8,15 +8,17 @@
       <sourceFolder url="file://$MODULE_DIR$/NodeErrs.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Node.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HashTreeQuery.cpp" isTestSource="false" />
-      <sourceFolder url="file://$MODULE_DIR$/HashNode.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HashtreeState.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HashtreeFile.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Hashtree.cpp" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/HashNode.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/CMakeLists.txt" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/Hashtree.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/main.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HConfig.h" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HashTreeQuery.h" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/test.cpp" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/HashNode.cpp" isTestSource="false" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />

@@ -20,6 +20,7 @@ protected:
 public:
     //args
     std::vector<Node*> sons;
+    bool occupied= false;
     T data;
 
     //func
