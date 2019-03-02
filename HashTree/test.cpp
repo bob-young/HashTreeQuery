@@ -34,7 +34,7 @@ test::test(int x,int y) {
     //generate X keys
     for(int i=0;i<scale;i++){
         //test_key.push_back(to_string(re()%scale));
-        htq->put(to_string(i));
+        htq->put0(to_string(i));
     }
     cout<<"[test]: max capacity is "<<htq->hashTree->get_capacity()<<",input keys "<<scale<<endl;
 //    htq.put("aaa");
@@ -56,8 +56,8 @@ void test::start() {
 //    }
     timer.start();
     for(int i=0;i<test_times;i++){
-        HashMem a;
-        htq->get(to_string(re()%scale),&a);
+        size_t a;
+        htq->get0(to_string(re()%scale),&a);
     }
     timer.stop();
     cout<<"[test]:"<< scale <<" tables for "<< test_times<<" times,use "<< timer.time_usage()<<" s"<<endl;

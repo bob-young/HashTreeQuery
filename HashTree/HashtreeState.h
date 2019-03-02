@@ -7,6 +7,7 @@
 enum class HashtreeState : unsigned int{
     SUCCESS=0,
     OUT_OF_CAP=2,
+    TREE_ERR=3,
     HTBUFFER_OVER_FLOW=11,
 
     HT_INCOMPLETE=18,

@@ -58,9 +58,9 @@ int main() {
 //    s1->showHashcode();
 
     //test_HashFile();
-    std::cout << "Hello, World!" << std::endl;
+    std::cout << "Hello!" << std::endl;
 #define T_T 100000
-    test t(10000,T_T);
+    test t(500,T_T);
     t.start();
     //test_HashTreeQuery1();
     return 0;
